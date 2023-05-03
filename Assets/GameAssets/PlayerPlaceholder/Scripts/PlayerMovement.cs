@@ -8,10 +8,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private Transform orientation;
     [SerializeField] private CharacterController characterController;
-    [SerializeField] private InputActionReference movement, jump, run;
+    [SerializeField] private InputActionReference movement, jump, run, dodge;
 
-    [SerializeField] private float moveSpeed, jumpForce = 5f, jumpCooldown = 2f, airMultiplier = 0.4f , gravity = -9.18f, runMultiplier = 1.5f;
-    [SerializeField] private bool canJump = true;
+    [SerializeField] private float moveSpeed, jumpForce = 5f, jumpCooldown = 2f, airMultiplier = 0.4f, gravity = -9.18f, runMultiplier = 1.5f, dodgeCooldown = 2f, dodgeSpeedMultiplier = 4f;
+    
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundSphereChecker;
@@ -24,12 +24,12 @@ public class PlayerMovement : MonoBehaviour
 
     // Animation Variable
     private Vector3 playerVelocity;
-    private bool isWalking;
-    private bool isRunning;
+    private float timer;
+    private bool isWalking, isRunning, isDodging, canJump = true, canDodge = true;
 
     private void Start()
     {
-        characterController.detectCollisions = false;
+
     }
 
     private void OnEnable()
@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         jump.action.performed += ctx => Jump();
         run.action.performed += ctx => Run();
         run.action.canceled += ctx => ResetRun();
+        dodge.action.performed += ctx => Dodge();
     }
 
     private void OnDisable()
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         jump.action.performed -= ctx => Jump();
         run.action.performed -= ctx => Run();
         run.action.canceled -= ctx => ResetRun();
+        dodge.action.performed -= ctx => Dodge();
     }
 
     private void Update()
@@ -69,17 +71,32 @@ public class PlayerMovement : MonoBehaviour
         if (isRunning)
         {
             moveValue *= runMultiplier;
-        }    
+        }
+
+        if (isDodging)
+        {
+            if (timer >= 0f)
+            {
+                timer -= Time.deltaTime;
+
+                Vector3 dodgeForward = transform.forward * dodgeSpeedMultiplier * animator.GetFloat("DodgeMultiplierCurve");
+                characterController.Move(dodgeForward * Time.deltaTime * moveSpeed);
+            }
+            else
+            {
+                isDodging = false;
+            }
+        }
 
         playerVelocity.y += gravity * Time.deltaTime;
         characterController.Move(playerVelocity * Time.deltaTime);
 
 
-        if (isGrounded)
+        if (isGrounded && !isDodging)
         {
             characterController.Move(moveValue * Time.deltaTime * moveSpeed);
         }
-        else
+        else if (!isDodging)
         {
             characterController.Move(moveValue * Time.deltaTime * moveSpeed * airMultiplier);
         }
@@ -124,6 +141,28 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         canJump = true;
+    }
+
+    private void Dodge()
+    {
+        if (isGrounded && canDodge)
+        {
+            canDodge = false;
+
+            // animation controls
+            animator.SetTrigger("IsDodge");
+
+            // dodge function
+            isDodging = true;
+            timer = dodgeCooldown / 3f;
+
+            Invoke(nameof(ResetDodge), dodgeCooldown);
+        }
+    }
+
+    private void ResetDodge()
+    {
+        canDodge = true;
     }
 
     private void Run()
