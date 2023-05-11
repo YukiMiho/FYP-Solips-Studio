@@ -29,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        characterController.detectCollisions = false;
     }
 
     private void OnEnable()

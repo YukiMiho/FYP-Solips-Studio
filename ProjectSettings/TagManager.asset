@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Coins
+  - TestEnemy1
+  - Sword
+  - MovableObject
+  - FireVFX
   layers:
   - Default
   - TransparentFX
@@ -13,8 +18,8 @@ TagManager:
   - UI
   - Ground
   - Player
-  - 
-  - 
+  - Interactable
+  - Fire
   - 
   - 
   - 
