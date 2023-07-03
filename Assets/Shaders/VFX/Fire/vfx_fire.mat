@@ -90,7 +90,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _FireDetail: 10
+    - _FireDetail: 7.15
     - _FirePower: 0.474
     - _FireThreshold: -0.5
     - _GlossMapScale: 0

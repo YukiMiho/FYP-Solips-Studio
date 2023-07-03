@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ASE_CutoutNoise
+  m_Shader: {fileID: 4800000, guid: 6a1e1047871cbbe4eb657811464c466b, type: 3}
+  m_ShaderKeywords: _CUSTOMVERTEXSTREAM_ON
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 4906295d398558a489618dd52730844d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PTex:
+        m_Texture: {fileID: 2800000, guid: 4906295d398558a489618dd52730844d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParticleTextureA:
+        m_Texture: {fileID: 2800000, guid: 04dac059ae93ab146b62b9ef694e1887, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex4coord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AlphaClip: 0.3
+    - _AlphaCutoff: 0.5
+    - _CVS_TilingEnable: 0
+    - _CustomVertexStream: 1
+    - _Cutoff: 0.602
+    - _Float0: 1
+    - _HDRValue: 2
+    - _InvFade: 1
+    - __dirty: 0
+    m_Colors:
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HDRValue: {r: 23.968628, g: 23.968628, b: 23.968628, a: 1}
+    - _TintColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

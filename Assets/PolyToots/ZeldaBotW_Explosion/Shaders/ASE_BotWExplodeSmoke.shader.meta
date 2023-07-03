@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: aee6eefcd2e25b04fbb5be15b7fd5abd
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _JiggleNormals: {fileID: 2800000, guid: 73ad01cf98af75f46880d7d88b3ce234, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
